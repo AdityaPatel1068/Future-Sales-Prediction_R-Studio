@@ -1,12 +1,15 @@
 # Install Packages 
 install.packages("readr")
 install.packages("httr")
+install.packages("lubridate")
+install.packages("dplyr")
 
 
 
 
-
-#load Libraries
+# Load the required libraries
+library(lubridate)
+library(dplyr)
 library(readr)
 library(httr)
 
@@ -32,7 +35,26 @@ sample_submission <- read_csv(url(sample_submission_url)) #a sample submission f
 shops <- read_csv(url(shops_url)) #supplemental information about the shops.
 test <- read_csv(url(test_url)) #the test set. You need to forecast the sales for these shops and products for November 2015.
 
+head(sales_train)
 
-# Display the training set
-knitr::kable(sales_train, format = "markdown")
+# Convert date column to Date type with specified format
+sales_train$date <- as.Date(sales_train$date, format = "%d.%m.%Y")
+
+
+head(sales_train)
+
+weekdays(sales_train$date, abbreviate = FALSE) 
+
+# Convert 'date' column to Date class
+sales_train$date <- as.Date(sales_train$date)
+
+# Add a new column for weekdays
+sales_train <- sales_train %>%mutate(weekdays = weekdays(date))
+
+# Display the updated dataframe
+head(sales_train)
+
+
+
+
 
