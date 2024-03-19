@@ -47,28 +47,26 @@ To be done
 
 ```mermaid
 classDiagram
-  ItemCategories {
-    << (C, #FF7700) item_category_id >>
-    item_category_name
-  }
-  ItemCategories --|> Item : item_category_id
-  Item {
-    << (C, #FF7700) item_id >>
-    item_category_id
-    item_name
-  }
-  SalesTrain {
-    << (C, #FF7700) date >>
-    date_block_num
-    shop_id
-    item_id
-    item_price
-    item_cnt_day
-  }
-  SalesTrain --> Item : item_id
-  Shop {
-    << (C, #FF7700) shop_id >>
-    shop_name
-  }
-
-  }
+    Sales_train <|-- Shop
+    Sales_train <|-- Item
+    Sales_train <|-- Item_categories
+    Sales_train : Date
+    Sales_train : Date_block_num
+    Sales_train: Day
+    Sales_train: Shop_id
+    Sales_train: Item_id
+    Sales_train: Item_Price
+    Sales_train: Item_count_day
+     
+    class Shop{
+      Shop_name
+      Shop_id
+    }
+    class Item{
+     item_id 
+     item_category_id 
+     item_name
+    }
+    class Item_categories{
+	item_category_name
+	 item_category_id    }
