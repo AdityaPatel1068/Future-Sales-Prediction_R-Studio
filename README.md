@@ -70,3 +70,5 @@ classDiagram
     << (C, #FF7700) shop_id >>
     shop_name
   }
+
+  }
